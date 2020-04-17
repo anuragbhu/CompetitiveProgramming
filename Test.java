@@ -1,28 +1,77 @@
-import java.util.*;
-import java.lang.*;
-import java.io.*; 
+import java.io.*;
+import java.util.StringTokenizer;
 
-class Test {
-        public static void main(String[] args){
-                Scanner sc = new Scanner(System.in);
-                int n = sc.nextInt();
+public class Test {
 
-                boolean result = check(n);
 
-                if(result)
-                        System.out.println("Yes");
-                else
-                        System.out.println("No");
+    public static void main(String[] args) throws FileNotFoundException {
+        InputStream is = System.in;
+        //FileInputStream fis = new FileInputStream("path");
+        FastReader in = new FastReader(is);
+        //FastReader in = new FastReader(fis);  to read from the file with the given path
+
+        int a = in.nextInt();
+        double b = in.nextDouble();
+        long c = in.nextLong();
+        String d = in.next();
+        String line = in.nextLine();
+
+        String curLine = null;
+        while ((curLine = in.nextLine()) != null) {
+            String currline = in.nextLine();
+            //reading until the end-of-file
         }
 
-        public static boolean check(int n){
+        in.close(); // always close your resources it's good practice
+    }
 
-                while(n>0){
-                        int rem = n%10;
-                        if(rem==7)
-                                return true;
-                        n/=10;
+    static class FastReader {
+        BufferedReader in = null;
+        StringTokenizer st;
+
+        public FastReader() {
+        }
+
+        public FastReader(InputStream is) {
+            in = new BufferedReader(new InputStreamReader(is));
+        }
+
+        public String next() {
+            try {
+                while (st == null || !st.hasMoreTokens()) {
+                    st = new StringTokenizer(in.readLine());
                 }
-                return false;
+            } catch (Exception e) {
+                return null;
+            }
+            return st.nextToken();
         }
-} 
+
+        public int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        public long nextLong() {
+            return Long.parseLong(next());
+        }
+
+        public double nextDouble() {
+            return Double.parseDouble(next());
+        }
+
+        public String nextLine() {
+            try {
+                return in.readLine();
+            } catch (IOException e) {
+            }
+            return null;
+        }
+
+        public void close() {
+            try {
+                in.close();
+            } catch (IOException e) {
+            }
+        }
+    }
+}
