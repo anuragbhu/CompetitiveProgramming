@@ -1,77 +1,148 @@
+import java.util.*;
 import java.io.*;
-import java.util.StringTokenizer;
-
+ 
 public class Test {
 
+  static class Reader {
 
-    public static void main(String[] args) throws FileNotFoundException {
-        InputStream is = System.in;
-        //FileInputStream fis = new FileInputStream("path");
-        FastReader in = new FastReader(is);
-        //FastReader in = new FastReader(fis);  to read from the file with the given path
+    final private int BUFFER_SIZE = 1 << 16; 
+    private DataInputStream din; 
+    private byte[] buffer; 
+    private int bufferPointer, bytesRead; 
 
-        int a = in.nextInt();
-        double b = in.nextDouble();
-        long c = in.nextLong();
-        String d = in.next();
-        String line = in.nextLine();
+    public Reader() { 
+      din = new DataInputStream(System.in); 
+      buffer = new byte[BUFFER_SIZE]; 
+      bufferPointer = bytesRead = 0; 
+    } 
 
-        String curLine = null;
-        while ((curLine = in.nextLine()) != null) {
-            String currline = in.nextLine();
-            //reading until the end-of-file
-        }
+    public Reader(String file_name) throws IOException { 
+      din = new DataInputStream(new FileInputStream(file_name)); 
+      buffer = new byte[BUFFER_SIZE]; 
+      bufferPointer = bytesRead = 0; 
+    } 
 
-        in.close(); // always close your resources it's good practice
+    public String readLine() throws IOException { 
+      byte[] buf = new byte[64]; // line length 
+      int cnt = 0, c; 
+      while ((c = read()) != -1) { 
+        if (c == '\n') 
+          break; 
+        buf[cnt++] = (byte) c; 
+      } 
+      return new String(buf, 0, cnt); 
+    } 
+
+    public int nextInt() throws IOException { 
+      int ret = 0; 
+      byte c = read(); 
+      while (c <= ' ') 
+        c = read(); 
+      boolean neg = (c == '-'); 
+      if (neg) 
+        c = read(); 
+      do { 
+        ret = ret * 10 + c - '0'; 
+      } while ((c = read()) >= '0' && c <= '9'); 
+
+      if (neg) 
+        return -ret; 
+      return ret; 
+    } 
+
+    public long nextLong() throws IOException { 
+      long ret = 0; 
+      byte c = read(); 
+      while (c <= ' ') 
+        c = read(); 
+      boolean neg = (c == '-'); 
+      if (neg) 
+        c = read(); 
+      do { 
+        ret = ret * 10 + c - '0'; 
+      } 
+      while ((c = read()) >= '0' && c <= '9'); 
+      if (neg) 
+        return -ret; 
+      return ret; 
+    } 
+
+    public double nextDouble() throws IOException { 
+      double ret = 0, div = 1; 
+      byte c = read(); 
+      while (c <= ' ') 
+        c = read(); 
+      boolean neg = (c == '-'); 
+      if (neg) 
+        c = read(); 
+
+      do { 
+        ret = ret * 10 + c - '0'; 
+      } 
+      while ((c = read()) >= '0' && c <= '9'); 
+
+      if (c == '.') { 
+        while ((c = read()) >= '0' && c <= '9') { 
+          ret += (c - '0') / (div *= 10); 
+        } 
+      } 
+
+      if (neg) 
+        return -ret; 
+      return ret; 
+    } 
+
+    private void fillBuffer() throws IOException { 
+      bytesRead = din.read(buffer, bufferPointer = 0, BUFFER_SIZE); 
+      if (bytesRead == -1) 
+        buffer[0] = -1; 
+    } 
+
+    private byte read() throws IOException { 
+      if (bufferPointer == bytesRead) 
+        fillBuffer(); 
+      return buffer[bufferPointer++]; 
+    } 
+
+    public void close() throws IOException { 
+      if (din == null) 
+        return; 
+      din.close(); 
+    } 
+  }
+ 
+  public static void main(String args[]) throws IOException {
+    try {
+      FileOutputStream output = new FileOutputStream("temp.out");
+      PrintStream out = new PrintStream(output);
+      //Diverting the output stream into file "temp.out".Comment the below line to use console
+      System.setOut(out);
+  
+      InputStream input = new FileInputStream("temp.in");
+      //Diverting the input stream into file "temp.in".Comment the below line to use console
+      System.setIn(input);
+  
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+  
+    Reader sc = new Reader();
+    PrintWriter wr = new PrintWriter(System.out);
+ 
+    long start = System.currentTimeMillis();
+    int t = 1;
+    t = sc.nextInt();    //Comment this line if there is single test case
+
+    while((t--) != 0) {
+      
+      wr.println(t);
     }
 
-    static class FastReader {
-        BufferedReader in = null;
-        StringTokenizer st;
-
-        public FastReader() {
-        }
-
-        public FastReader(InputStream is) {
-            in = new BufferedReader(new InputStreamReader(is));
-        }
-
-        public String next() {
-            try {
-                while (st == null || !st.hasMoreTokens()) {
-                    st = new StringTokenizer(in.readLine());
-                }
-            } catch (Exception e) {
-                return null;
-            }
-            return st.nextToken();
-        }
-
-        public int nextInt() {
-            return Integer.parseInt(next());
-        }
-
-        public long nextLong() {
-            return Long.parseLong(next());
-        }
-
-        public double nextDouble() {
-            return Double.parseDouble(next());
-        }
-
-        public String nextLine() {
-            try {
-                return in.readLine();
-            } catch (IOException e) {
-            }
-            return null;
-        }
-
-        public void close() {
-            try {
-                in.close();
-            } catch (IOException e) {
-            }
-        }
-    }
+    long end = System.currentTimeMillis();
+    wr.println();
+    wr.println(end-start);
+    wr.flush();
+    wr.close();
+  
+  }
 }
