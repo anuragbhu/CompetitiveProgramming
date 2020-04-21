@@ -2,19 +2,22 @@ import java.util.*;
 import java.io.*;
 import java.lang.*;
 
-class SlowReaderForCheck {
+class FastIO3 {
 	public static void main(String[] args){
 		
-    Scanner sc = new Scanner(System.in);
+    // Scanner sc = new Scanner(System.in);
 
-		int n = sc.nextInt();
-    sc.nextLine();
-		String[] str = new String[n];
+		// int n = sc.nextInt();
+    // sc.nextLine();
+		// String[] str = args[0];
+    // String[] str = new String[n];
 
     	for(int i = 0; i < n; i++){
       		str[i] = sc.nextLine();
     	}
-		System.out.println(maths(str));
+		// System.out.println(maths(str));
+    for(int i = 0; i < args.length; i++)
+      System.out.println(args[i]);
 
 	}
 

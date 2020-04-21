@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 import java.lang.*;
  
-public class FastReaderForCP {
+public class FastIO1 {
 
   static class Reader {
 
