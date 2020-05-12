@@ -1,9 +1,8 @@
 import java.util.*;
 import java.io.*;
 import java.lang.*;
-import java.math.*;
  
-public class Main {
+class Clone {
 
   static class Reader {
 
@@ -112,7 +111,6 @@ public class Main {
       din.close(); 
     } 
   }
-
  
   public static void main(String args[]) throws IOException {
     try {
@@ -124,37 +122,42 @@ public class Main {
       InputStream input = new FileInputStream("temp.in");
       //Diverting the input stream into file "temp.in".Comment the below line to use console
       System.setIn(input);
-    
+  
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
   
-    // Scanner sc = new Scanner(System.in);
     Reader sc = new Reader();
-    // BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
+    // Scanner sc = new Scanner(System.in);
     PrintWriter wr = new PrintWriter(System.out);
 
-    // int t = 1;
-    // t = sc.nextInt();    //Comment this line if there is single test case
+    int t = 1;
+    t = sc.nextInt();    //Comment this line if there is single test case
     
-    // while((t--) != 0) {
+
+    while((t--) != 0) {
+      
+      long num = sc.nextLong();
+      long ans = 1, rem = 0, count = 0;
+      for(long i = num; i >= 2; i--){
+        ans *= i;
+        rem =  ans % 10;
+
+        while(rem == 0){
+          count++;
+          ans /= 10;
+          rem =  ans % 10;
+        }
+      }
+
+      // wr.printl  n(ans);
+      wr.println(count);
 
 
-
-
-    // }
-
-    int n = sc.nextInt();
-    int m = sc.nextInt();
-    int[] arr = new int[n];
-
-    for(int i = 0; i < n; i++) {
-      arr[i] = sc.nextInt();
     }
 
-    
-    
+
     wr.flush();
-    wr.close();
-  }
+    wr.close();  
+  }  
 }
