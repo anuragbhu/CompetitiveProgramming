@@ -134,26 +134,28 @@ public class Main {
     // BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
     PrintWriter wr = new PrintWriter(System.out);
 
-    // int t = 1;
-    // t = sc.nextInt();    //Comment this line if there is single test case
+    int t = 1;
+    t = sc.nextInt();    //Comment this line if there is single test case
     
-    // while((t--) != 0) {
+    while((t--) != 0) {
+      long n = sc.nextLong();
+      long div = 5, count = 0;
 
+      while(true) {
+        count += (long) Math.floor(n/div);
+        div *= 5;
+        if(n < div)
+          break;
+      }
 
+      wr.println(count);
 
-
-    // }
-
-    int n = sc.nextInt();
-    int m = sc.nextInt();
-    int[] arr = new int[n];
-
-    for(int i = 0; i < n; i++) {
-      arr[i] = sc.nextInt();
+        
     }
 
     
     
+
     wr.flush();
     wr.close();
   }
