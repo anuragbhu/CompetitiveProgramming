@@ -7,16 +7,8 @@ class Clone {
 
 		Scanner sc = new Scanner(System.in);
 
-		long n = sc.nextLong();
-		long div = 5, count = 0;
-
-		while(true) {
-			count += (long) Math.floor(n/div);
-			div *= 5;
-			if(n < div)
-				break;
+		for( ;; ) {
+			
 		}
-
-		System.out.println(count);
 	}
 }

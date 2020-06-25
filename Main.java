@@ -115,19 +115,19 @@ public class Main {
 
  
   public static void main(String args[]) throws IOException {
-    try {
-      FileOutputStream output = new FileOutputStream("temp.out");
-      PrintStream out = new PrintStream(output);
-      //Diverting the output stream into file "temp.out".Comment the below line to use console
-      System.setOut(out);
+    // try {
+    //   FileOutputStream output = new FileOutputStream("temp.out");
+    //   PrintStream out = new PrintStream(output);
+    //   //Diverting the output stream into file "temp.out".Comment the below line to use console
+    //   System.setOut(out);
   
-      InputStream input = new FileInputStream("temp.in");
-      //Diverting the input stream into file "temp.in".Comment the below line to use console
-      System.setIn(input);
+    //   InputStream input = new FileInputStream("temp.in");
+    //   //Diverting the input stream into file "temp.in".Comment the below line to use console
+    //   System.setIn(input);
     
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    }
+    // } catch (FileNotFoundException e) {
+    //   e.printStackTrace();
+    // }
   
     // Scanner sc = new Scanner(System.in);
     Reader sc = new Reader();
@@ -138,25 +138,35 @@ public class Main {
     t = sc.nextInt();    //Comment this line if there is single test case
     
     while((t--) != 0) {
-      long n = sc.nextLong();
-      long div = 5, count = 0;
 
-      while(true) {
-        count += (long) Math.floor(n/div);
-        div *= 5;
-        if(n < div)
-          break;
+      int n = sc.nextInt();
+      int e = 0, o = 0;
+
+      for(int i = 0; i < n; i++) {
+        
+        int x = sc.nextInt();
+
+        if((x % 2) != (i % 2)){
+          if(i % 2 != 0) e++;
+          else o++;
+        }
       }
 
-      wr.println(count);
-
-        
+      if(e == o) wr.println(e);
+      else wr.println(-1);
     }
 
-    
-    
+    // NO need to create array or such data structure for set of similar items. You can
+    // store it in variable for each iteration to perform operation.
+
+    // Do that much operation according to given sample output. There is no such straight 
+    // strategy what are written in story. It's a myth.
+
+    // Do more problems of much weight.
+    // Like H, G, F, E etc.
 
     wr.flush();
     wr.close();
   }
 }
+  

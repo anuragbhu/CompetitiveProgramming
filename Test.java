@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 import java.lang.*;
  
-class Test {
+public class Test {
 
   static class FastReader {
 
@@ -65,40 +65,33 @@ class Test {
     FastReader sc = new FastReader();
     PrintWriter wr = new PrintWriter(System.out);
  
-    // int t = 1;
-    // t = sc.nextInt();    //Comment this line if there is single test case
+    int t = 1;
+    t = sc.nextInt();    //Comment this line if there is single test case
     
-    // while((t--) != 0) {
-  
-    //   int x = sc.nextInt();
-    //   int y = sc.nextInt();
+    while((t--) != 0) {
       
-    //   wr.println(x+y);
-    // }
+      int n = sc.nextInt();
+      
+      int a = 1, b = 0;
 
-
-    String str = sc.nextLine();
-
-    char[] ch = str.toCharArray();
-    int count = 1, check = 1;
-    char test = ch[0];
-
-    for(int i = 1; i < ch.length; i++) {
-      // test = ch[i];
-
-      if(ch[i] == test){
-        check++;
-      } else {
-        test = ch[i];
-        check = 1;
-      }
-      if(check > count){
-        count = check;
-      }
+      
+      
     }
-    
-    wr.println(count);
 
+
+
+
+
+    // while((t--) != 0) {
+      
+    //   int n = sc.nextInt();
+      
+    //   int result = (int)(Math.log(n) / Math.log(2));
+      
+    //   wr.println(result+1);
+      
+    // }
+    // How to calculate log base 2 in java
     wr.flush();
     wr.close();
   }
