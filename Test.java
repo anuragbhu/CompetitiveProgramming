@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 import java.lang.*;
  
-public class Test {
+class Test {
 
   static class FastReader {
 
@@ -48,6 +48,7 @@ public class Test {
   }
  
   public static void main(String args[]) throws IOException {
+    
     // try {
     //   FileOutputStream output = new FileOutputStream("temp.out");
     //   PrintStream out = new PrintStream(output);
@@ -65,19 +66,27 @@ public class Test {
     FastReader sc = new FastReader();
     PrintWriter wr = new PrintWriter(System.out);
  
-    int t = 1;
-    t = sc.nextInt();    //Comment this line if there is single test case
+    // int t = 1;
+    // t = sc.nextInt();    //Comment this line if there is single test case
     
-    while((t--) != 0) {
-      
-      int n = sc.nextInt();
-      
-      int a = 1, b = 0;
+    // while((t--) != 0) {
+
 
       
+    // }
+
+    String s = sc.nextLine();
+    String t = sc.nextLine();
+
+    int count = 0;
+
+    for(int i = 0; i < s.length(); i++) {
       
+      if(s.charAt(i) != t.charAt(i))
+        count++;
     }
 
+    wr.println(count);
 
 
 
@@ -92,6 +101,49 @@ public class Test {
       
     // }
     // How to calculate log base 2 in java
+
+
+    int t = 1;
+    t = sc.nextInt();    //Comment this line if there is single test case
+    
+    while((t--) != 0) {
+
+      int n = sc.nextInt();
+      int e = 0, o = 0;
+
+      for(int i = 0; i < n; i++) {
+        
+        int x = sc.nextInt();
+
+        if((x % 2) != (i % 2)){
+          if(i % 2 != 0) e++;
+          else o++;
+        }
+      }
+
+      if(e == o) wr.println(e);
+      else wr.println(-1);
+    }
+
+    NO need to create array or such data structure for set of similar items. You can
+    store it in variable for each iteration to perform operation.
+
+    Do that much operation according to given sample output. There is no such straight 
+    strategy what are written in story. It's a myth.
+
+    Do more problems of much weight.
+    Like H, G, F, E etc.
+
+    number theory
+    brute force
+    some standard
+
+    while((t--) != 0){
+
+
+    }
+
+    
     wr.flush();
     wr.close();
   }

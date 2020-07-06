@@ -1,7 +1,6 @@
 import java.util.*;
 import java.io.*;
 import java.lang.*;
-import java.math.*;
  
 public class Main {
 
@@ -112,61 +111,69 @@ public class Main {
       din.close(); 
     } 
   }
-
  
   public static void main(String args[]) throws IOException {
-    // try {
-    //   FileOutputStream output = new FileOutputStream("temp.out");
-    //   PrintStream out = new PrintStream(output);
-    //   //Diverting the output stream into file "temp.out".Comment the below line to use console
-    //   System.setOut(out);
+    try {
+      FileOutputStream output = new FileOutputStream("temp.out");
+      PrintStream out = new PrintStream(output);
+      //Diverting the output stream into file "temp.out".Comment the below line to use console
+      System.setOut(out);
   
-    //   InputStream input = new FileInputStream("temp.in");
-    //   //Diverting the input stream into file "temp.in".Comment the below line to use console
-    //   System.setIn(input);
-    
-    // } catch (FileNotFoundException e) {
-    //   e.printStackTrace();
-    // }
+      InputStream input = new FileInputStream("temp.in");
+      //Diverting the input stream into file "temp.in".Comment the below line to use console
+      System.setIn(input);
   
-    // Scanner sc = new Scanner(System.in);
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+  
     Reader sc = new Reader();
-    // BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
     PrintWriter wr = new PrintWriter(System.out);
 
-    int t = 1;
-    t = sc.nextInt();    //Comment this line if there is single test case
-    
-    while((t--) != 0) {
+    // int t = 1;
+    // t = sc.nextInt();    //Comment this line if there is single test case
+
+    // while((t--) != 0) {
+  
+
+      
+      
+    // }
 
       int n = sc.nextInt();
-      int e = 0, o = 0;
-
-      for(int i = 0; i < n; i++) {
+      long ans = 0;
+      for(int k = 1; k <= n; k++) {
         
-        int x = sc.nextInt();
-
-        if((x % 2) != (i % 2)){
-          if(i % 2 != 0) e++;
-          else o++;
-        }
+        ans += k * printDivisors(k);
+        // wr.println(ans);
       }
 
-      if(e == o) wr.println(e);
-      else wr.println(-1);
-    }
+      wr.println(ans);
 
-    // NO need to create array or such data structure for set of similar items. You can
-    // store it in variable for each iteration to perform operation.
 
-    // Do that much operation according to given sample output. There is no such straight 
-    // strategy what are written in story. It's a myth.
 
-    // Do more problems of much weight.
-    // Like H, G, F, E etc.
+
 
     wr.flush();
     wr.close();
   }
+
+  public static int printDivisors(int n) 
+    { 
+        int count = 0;
+        // Note that this loop runs till square root 
+        for (int i=1; i<=Math.sqrt(n); i++) 
+        { 
+            if (n%i==0) 
+            { 
+                // If divisors are equal, print only one 
+                if (n/i == i) 
+                    count++;
+       
+                else // Otherwise print both 
+                    count += 2;
+            } 
+        } 
+        return count;
+    } 
 }
-  
