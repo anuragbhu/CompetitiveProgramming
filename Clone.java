@@ -1,15 +1,26 @@
 import java.math.*;
 import java.util.*;
+import java.lang.*;
+import java.io.*;
 
-class Clone {
+public class Clone {
 
 	public static void main(String[] args) {
 
-    int[][] foo = new int[][] {{ 1, 2, 3 },
-    						   { 1, 2, 3, 4}};
+        Scanner sc = new Scanner(System.in);
 
-    System.out.println(foo.length); //2
-    System.out.println(foo[0].length); //3
-    System.out.println(foo[1].length); //4
-}
+        int n = sc.nextInt();
+        String[] arr = new String[n];
+
+        for(int i = 0; i < n; i++) {
+            arr[i] = sc.nextLine();
+        }
+
+        Arrays.sort(arr);
+
+        for(int i = 0; i < n; i++) {
+            System.out.println(arr[i]);
+        }
+		
+    }
 }
